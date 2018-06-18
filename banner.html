@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kruidvat Banner</title>
+  <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="style/img/Kruidvat_logo.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--    <script src="data/kv-gillette.json"></script>-->
+</head>
+    
+<body>
+<!--    AREA FOR THE ANIMATION TO TAKE PLACE IN-->
+    <div class="banner">
+        
+<!--        FIRST CARD WHITH CONTENT, THESE CARDS ARE HIDDEN AND DISPLAYED AFTER ONE ANOTHER-->
+        <div class="first">  
+            <div class="gillet_holder">
+                    <img class="gillet_fusion_proshield" src="style/img/fusion_proshield.png">  
+            </div>
+
+            <div class="kruidvat_logo_holder">
+                <a class="link" href="https://www.kruidvat.nl/">
+                    <img class="kruidvat_logo" src="style/img/Kruidvat_logo.png">
+                </a>
+            </div> 
+
+            <div class="pancake_holder">
+                <img class="pancake" src="style/img/pancake.png">    
+            </div> 
+                <div class="title">Gillette Fusion ProShield Scheermes met FlexBall-Technologie</div>
+        </div>
+    
+<!--        SECOND CARD WHITH CONTENT-->
+        <div class="second">
+            <div class="description">
+                Gillette Fusion ProShield Scheermes met FlexBall-Technologie voor mannen beschermt je terwijl je je scheert. De ProShield lubricatiestrips voor en achter de mesjes leggen een beschermend laagje om te beschermen tegen irritatie.
+            </div>
+            
+            <div class="gillette_package_holder">
+                <img class="gillette_package" src="style/img/gillette_package.png">
+            </div>
+        </div>
+        
+<!--        THIRD CARD WHITH CONTENT -->
+        <div class="third">
+            <img class="gillette_icon" src="style/img/icons/1.png">
+            <img class="gillette_icon" src="style/img/icons/2.png"> 
+            <img class="gillette_icon" src="style/img/icons/3.png"> 
+            <img class="gillette_icon" src="style/img/icons/4.png"> 
+            <img class="gillette_icon" src="style/img/icons/5.png"> 
+            <img class="gillette_icon" src="style/img/icons/6.png"> 
+            <img class="gillette_icon" src="style/img/icons/7.png"> 
+        </div>
+        
+<!--        FOURTH AND FINAL CARD WHITH CONTENT-->
+        <div class="fourth">
+            <div class="prijspaneel_holder">
+                <img class="prijspaneel" src="style/img/prijspanel.png">
+            </div>
+            <div class="button_holder">
+                <a href="https://www.kruidvat.nl/gillette-fusion-proshield-scheermes-met-flexball-technologie/p/3662562">
+                    <img class="button" src="style/img/click.png">
+                </a>
+            </div>
+        </div>
+        
+    </div>     
+    
+    
+<!--    GSAP ANIMATION-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <script>
+        
+    //GETTING TITLE DATA FROM JSON FILE    
+    $.getJSON("data/kv-gillette.json", function(result){
+        $.each(result, function(i, title){
+            console.log(title["title"]);
+            var title_array = (title["title"]);
+            
+            document.getElementsByClassName("title").innerHTML = title_array[0];
+        });
+    });
+        
+    //GETTING DESCRIPTION DATA FROM JSON FILE  
+    $.getJSON("data/kv-gillette.json", function(result){
+        $.each(result, function(i, description){
+            console.log(description["description"]);
+            var description_array = (description["description"]);
+            
+            document.getElementsByClassName("description").innerHTML = description_array[0];
+        });
+    });   
+    
+    // SYNTAX
+    // TweenMax.to('target', duration, {vars});
+    
+    //ALL ANIMATION FOR THE FIRST CONTAINER    
+    TweenMax.from('.kruidvat_logo', 0.7, {scale:0});
+        
+    TweenMax.to('.gillet_fusion_proshield', 0, {x:-750});
+    TweenMax.to('.gillet_fusion_proshield', 2.5, { ease: Expo.easeOut, x:960,  delay:1});
+        
+    TweenMax.to('.title', 0, {x:-750});
+    TweenMax.to('.title', 0.4, { ease: Power4.easeOut, x:0,  delay:1.2}); 
+    
+    TweenMax.to('.pancake', 1, {ease: Power4.easeOut, scale:1.4, delay:0.8});
+    TweenMax.to('.pancake', 1, {ease: Power4.easeOut, scale:1, delay:1.1});
+    TweenMax.to('.pancake', 1, {ease: Power4.easeOut, scale:1.4, delay:0.8});
+    
+    //HIDING THE FIRST CONTAINER    
+    TweenMax.to('.first', 1,  {y:-500, delay:3}); 
+    
+    //INTRODUCING THE SECOND CONTAINER    
+    TweenMax.to('.gillette_package', 0, {x:1000});
+    TweenMax.to('.second', 0, {y:500}); 
+    TweenMax.to('.second', 1,  {y:0, delay:2.9});
+    
+    //ALL ANIMATION FOR THE SECOND CONTAINER
+    //    TweenMax.to('.description', 0.8, {opacity:0, delay:7}); 
+    TweenMax.to('.gillette_package', 1, { ease: Expo.easeOut, x:700, delay:4.5});
+    TweenMax.to('.gillette_package', 0.3, {ease: Power4.easeOut, scale:1.2, delay:5.2});
+    TweenMax.to('.gillette_package', 0.3, {ease: Power4.easeOut, scale:1, delay:5.5});
+    
+    //HIDING THE SECOND CONTAINER    
+    TweenMax.to('.second', 1,  {x:-1000, delay:8.5});
+        
+    //INTODUCING THE THIRD CONTAINER
+    TweenMax.to('.third', 0,  {y:300});
+    TweenMax.to('.third', 0,  {y:0, delay:8.5});
+    TweenMax.to('.gillette_icon', 0, {y:300, delay:8.5});    
+    
+    //ALL ANIMATION FOR THE THIRD CONTAINER
+    TweenMax.staggerTo('.gillette_icon', 0.5, {ease: Power4.easeOut, y:0, delay:9}, 0.5);
+    TweenMax.staggerTo('.gillette_icon', 0.5, {ease: Power4.easeIn, y:-300, delay:14}, 0.1);
+        
+    //HIDING THE THIRD CONTAINER
+    TweenMax.to('.third', 0, {y:0, delay:16});
+    
+    //INTRODUCING THE FOURTH CONTAINER
+    TweenMax.to('.fourth', 0, {y:300});
+    TweenMax.to('.fourth', 1, {ease: Power4.easeOut, y:0, delay:16});
+        
+    //ALL ANIMATION FOR THE FOURTH AND FINAL CONTAINER
+    TweenMax.to('.prijspaneel', 0.3, {ease: Power4.easeOut, scale:1.2, delay:17});
+    TweenMax.to('.prijspaneel', 0.3, {ease: Power4.easeOut, scale:1, delay:17.3});
+    
+    TweenMax.to('.button', 0.3, {ease: Power4.easeOut, scale:1.2, delay:17.4});
+    TweenMax.to('.button', 0.3, {ease: Power4.easeOut, scale:1, delay:17.7}); 
+        
+    TweenMax.to('.button', 0.3, {ease: Power4.easeOut, scale:1.2, delay:18.2});
+    TweenMax.to('.button', 0.3, {ease: Power4.easeOut, scale:1, delay:18.5});     
+
+    </script>
+</body>
+</html>
+
+               
+               
